@@ -22,6 +22,10 @@ public class EventUserController {
 
         boolean isDuplicate = eventUserService.checkEmailDupicate(email);
 
+        // 중복된 이메일이 아니면 인증 코드 메일 발송
+        if(!isDuplicate){
+            eventUserService.sendVerificationEmail(email);
+        }
         return ResponseEntity.ok().body(isDuplicate);
     }
 }
