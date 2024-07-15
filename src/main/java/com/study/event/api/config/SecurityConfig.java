@@ -10,7 +10,6 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.web.filter.CorsFilter;
 
 // 스프링 시큐리티 설정 파일
 // 인터셉터, 필터 처리
@@ -54,8 +53,7 @@ public class SecurityConfig {
         ;
 
         // 토큰 위조 검사 커스텀 필터 필터체인에 연결
-        // CorsFilter(spring의 필터)뒤에 커스텀 필터르 ㄹ연결
-        http.addFilter(jwtAuthFilter, CorsFilter.class);
+        http.addFilter(jwtAuthFilter);
 
         return http.build();
     }
